@@ -1,0 +1,19 @@
+@model TarefasApp.Models.Colaborador
+@{
+    ViewData["Title"] = "Cadastrar Colaborador";
+}
+<h2>Cadastrar Colaborador</h2>
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label for="Nome" class="form-label">Nome</label>
+        <input asp-for="Nome" class="form-control" />
+        <span asp-validation-for="Nome" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="Setor" class="form-label">Setor</label>
+        <input asp-for="Setor" class="form-control" />
+        <span asp-validation-for="Setor" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Cadastrar</button>
+    <a href="/Colaboradores" class="btn btn-secondary">Voltar</a>
+</form>

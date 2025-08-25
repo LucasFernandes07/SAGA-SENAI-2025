@@ -1,0 +1,45 @@
+@model TarefasApp.Models.RegistroEPI
+@{
+    ViewData["Title"] = "Registrar Uso de EPI";
+    var colaboradores = ViewBag.Colaboradores as List<TarefasApp.Models.Colaborador>;
+    var epis = ViewBag.EPIs as string[];
+}
+<h2>Registrar Uso de EPI</h2>
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <strong>Por favor, corrija os erros abaixo:</strong>
+        <ul>
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <li>@error.ErrorMessage</li>
+        }
+        </ul>
+    </div>
+}
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label for="ColaboradorId" class="form-label">Colaborador</label>
+        <select asp-for="ColaboradorId" class="form-control" required>
+            <option value="">Selecione...</option>
+            @foreach (var c in colaboradores)
+            {
+                <option value="@c.Id">@c.Nome (@c.Setor)</option>
+            }
+        </select>
+        <span asp-validation-for="ColaboradorId" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="EPI" class="form-label">EPI Utilizado</label>
+        <select asp-for="EPI" class="form-control" required>
+            <option value="">Selecione...</option>
+            @foreach (var e in epis)
+            {
+                <option value="@e">@e</option>
+            }
+        </select>
+        <span asp-validation-for="EPI" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Registrar</button>
+    <a href="/RegistrosEPI" class="btn btn-secondary">Voltar</a>
+</form>

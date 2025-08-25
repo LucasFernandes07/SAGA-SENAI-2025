@@ -1,0 +1,23 @@
+@model IEnumerable<TarefasApp.Models.Colaborador>
+@{
+    ViewData["Title"] = "Colaboradores";
+}
+<h2>Colaboradores</h2>
+<a class="btn btn-primary mb-3" href="/Colaboradores/Create">Cadastrar Novo</a>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Setor</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.Nome</td>
+                <td>@c.Setor</td>
+            </tr>
+        }
+    </tbody>
+</table>

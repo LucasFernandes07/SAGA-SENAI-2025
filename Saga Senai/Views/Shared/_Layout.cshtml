@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Reciclau EPIs</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/TarefasApp.styles.css" asp-append-version="true" />
+    <style>
+            body { background: #f8fafc; }
+            .navbar-brand {
+                font-weight: bold;
+                font-size: 1.5rem;
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                height: 56px;
+            }
+            .navbar-brand img {
+                height: 48px;
+                width: auto;
+            }
+            .footer { background: #f1f3f6; }
+    </style>
+</head>
+<body>
+    <header>
+    <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #14532d; box-shadow: 0 2px 8px #0002; margin-bottom: 2rem;">
+            <div class="container-fluid">
+                <a class="navbar-brand d-flex align-items-center gap-2" href="/Colaboradores">
+                        <img src="/img/LOGO-removebg-preview.png" alt="Logo">
+                        <span style="font-family: 'Segoe UI', 'Arial', sans-serif; font-weight:700; font-size:2rem; letter-spacing:1px;">ALD CONTROLS</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/Colaboradores">Colaboradores</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/RegistrosEPI">Registros de EPI</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/Colaboradores">Ranking</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid px-2 px-md-5">
+        <main role="main" class="pb-3">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-10 col-lg-8">
+                    @RenderBody()
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="footer border-top text-muted mt-5 py-3">
+        <div class="container text-center">
+            &copy; 2025 - ALD CONTROLS
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <!-- Modo escuro removido -->
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

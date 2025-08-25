@@ -1,0 +1,22 @@
+@model TarefasApp.Models.Tarefa
+
+@{
+    ViewData["Title"] = "Excluir Tarefa";
+}
+
+<h1 class="my-4 text-danger">🗑️ Excluir Tarefa</h1>
+
+<div class="alert alert-warning">
+    <strong>Atenção!</strong> Tem certeza que deseja excluir a tarefa abaixo?
+</div>
+
+<div class="delete-info-box p-3 mb-3">
+    <h5><b>Título:</b> @Model.Titulo</h5>
+    <p><b>Descrição:</b> @Model.Descricao</p>
+    <p><b>Status:</b> @(Model.Concluida ? "✔️ Concluída" : "⏳ Pendente")</p>
+</div>
+
+<form method="post" action="/Tarefas/Delete/@Model.Id">
+    <button type="submit" class="btn btn-danger">Confirmar Exclusão</button>
+    <a href="/Tarefas" class="btn btn-secondary ms-2">Cancelar</a>
+</form>

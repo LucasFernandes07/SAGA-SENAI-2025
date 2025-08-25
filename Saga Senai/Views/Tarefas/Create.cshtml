@@ -1,0 +1,24 @@
+@model TarefasApp.Models.Tarefa
+
+@{
+    ViewData["Title"] = "Criar Tarefa";
+}
+
+<h1 class="my-4">➕ Nova Tarefa</h1>
+
+<form method="post" style="background:none;box-shadow:none;padding:0;border:none;">
+    <div class="mb-3">
+        <label class="form-label">Título:</label>
+        <input type="text" name="Titulo" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Descrição:</label>
+        <input type="text" name="Descricao" class="form-control" />
+    </div>
+    <div class="form-check mb-3">
+        <input type="checkbox" name="Concluida" class="form-check-input" id="concluidaCheck" value="true" />
+        <label class="form-check-label" for="concluidaCheck">Concluída</label>
+    </div>
+    <button type="submit" class="btn btn-success">Salvar</button>
+    <a href="/Tarefas" class="btn btn-secondary ms-2">Voltar</a>
+</form>
