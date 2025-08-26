@@ -58,6 +58,15 @@ namespace ald_controls.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Adiciona descrição padrão para capacete e luva
+                if (epi.Nome.ToLower().Contains("capacete"))
+                {
+                    epi.Descricao = "O capacete é utilizado para proteger a cabeça contra impactos, quedas de objetos e outros riscos no ambiente de trabalho.";
+                }
+                else if (epi.Nome.ToLower().Contains("luva"))
+                {
+                    epi.Descricao = "A luva é utilizada para proteger as mãos contra agentes químicos, cortes, perfurações e outros riscos ocupacionais.";
+                }
                 _context.Add(epi);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
