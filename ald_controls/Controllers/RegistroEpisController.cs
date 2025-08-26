@@ -50,7 +50,7 @@ namespace ald_controls.Controllers
         public IActionResult Create()
         {
             ViewData["ColaboradorId"] = new SelectList(_context.Colaboradores, "Id", "Nome");
-            ViewData["EpiId"] = new SelectList(_context.Epis, "Id", "Id");
+            ViewData["EpiId"] = new SelectList(_context.Epis, "Id", "Nome");
             return View();
         }
 
@@ -59,16 +59,25 @@ namespace ald_controls.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ColaboradorId,EpiId,DataRegistro,Pontos")] RegistroEpi registroEpi)
+    public async Task<IActionResult> Create([Bind("Id,ColaboradorId,EpiId")] RegistroEpi registroEpi)
         {
             if (ModelState.IsValid)
             {
+                registroEpi.DataRegistro = DateTime.Now;
+                registroEpi.Pontos = 10;
                 _context.Add(registroEpi);
+                // Somar pontos ao colaborador
+                var colaborador = await _context.Colaboradores.FindAsync(registroEpi.ColaboradorId);
+                if (colaborador != null)
+                {
+                    colaborador.Pontos += 10;
+                    _context.Update(colaborador);
+                }
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ColaboradorId"] = new SelectList(_context.Colaboradores, "Id", "Nome", registroEpi.ColaboradorId);
-            ViewData["EpiId"] = new SelectList(_context.Epis, "Id", "Id", registroEpi.EpiId);
+            ViewData["EpiId"] = new SelectList(_context.Epis, "Id", "Nome", registroEpi.EpiId);
             return View(registroEpi);
         }
 
@@ -86,7 +95,7 @@ namespace ald_controls.Controllers
                 return NotFound();
             }
             ViewData["ColaboradorId"] = new SelectList(_context.Colaboradores, "Id", "Nome", registroEpi.ColaboradorId);
-            ViewData["EpiId"] = new SelectList(_context.Epis, "Id", "Id", registroEpi.EpiId);
+            ViewData["EpiId"] = new SelectList(_context.Epis, "Id", "Nome", registroEpi.EpiId);
             return View(registroEpi);
         }
 

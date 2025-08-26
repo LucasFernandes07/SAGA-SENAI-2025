@@ -11,16 +11,16 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Colaborador)
+            Colaborador
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Colaborador.Nome)
+            @(Model.Colaborador != null ? Model.Colaborador.Nome : "-")
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Epi)
+            EPIs
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Epi.Id)
+            @(Model.Epi != null ? Model.Epi.Id.ToString() : "-")
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.DataRegistro)

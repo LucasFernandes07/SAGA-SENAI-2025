@@ -1,3 +1,47 @@
+/* Tabelas organizadas e contornadas */
+.table {
+  border-radius: 12px;
+  box-shadow: 0 2px 12px #0001;
+  overflow: hidden;
+  background: #fff;
+}
+.table th, .table td {
+  border: 1px solid #e0e0e0 !important;
+  vertical-align: middle;
+  text-align: center;
+}
+.table thead th {
+  background: #f8fafc;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #f4f6fb;
+}
+.table-bordered {
+  border: 1px solid #e0e0e0;
+}
+/* Estilos modernos apenas para a navbar */
+.site-navbar {
+  background: linear-gradient(90deg, #1a237e 0%, #3949ab 100%);
+  box-shadow: 0 2px 12px rgba(31,38,135,0.10);
+  padding: 0.5rem 0;
+}
+.site-navbar-brand {
+  font-weight: 700;
+  font-size: 1.5em;
+  color: #fff !important;
+  letter-spacing: 1px;
+}
+.navbar-nav .nav-link {
+  color: #fff !important;
+  font-weight: 500;
+  margin: 0 8px;
+  transition: color 0.2s;
+}
+.navbar-nav .nav-link:hover {
+  color: #ffca28 !important;
+}
 html {
   font-size: 14px;
 }
@@ -17,6 +61,54 @@ html {
   min-height: 100%;
 }
 
+
 body {
   margin-bottom: 60px;
+}
+
+/* Estilos modernos para a Home */
+.home-modern-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  background: linear-gradient(120deg, #f8fafc 0%, #e3eafc 100%);
+}
+
+.home-modern-card {
+  background: #fff;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  border-radius: 18px;
+  padding: 40px 32px;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  transition: box-shadow 0.3s;
+}
+
+.home-modern-card:hover {
+  box-shadow: 0 16px 40px 0 rgba(31, 38, 135, 0.22);
+}
+
+.home-modern-logo {
+  max-width: 120px;
+  width: 100%;
+  height: auto;
+  margin-bottom: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(31, 38, 135, 0.10);
+}
+
+.home-modern-title {
+  font-size: 2.4em;
+  font-weight: 700;
+  color: #1a237e;
+  margin-bottom: 18px;
+}
+
+.home-modern-text {
+  font-size: 1.15em;
+  color: #333;
+  line-height: 1.7;
+  margin-bottom: 0;
 }

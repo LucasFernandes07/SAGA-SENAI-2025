@@ -153,5 +153,12 @@ namespace ald_controls.Controllers
         {
             return _context.Colaboradores.Any(e => e.Id == id);
         }
+
+        // GET: Colaboradores/Ranking
+        public async Task<IActionResult> Ranking()
+        {
+            var colaboradores = await _context.Colaboradores.ToListAsync();
+            return View(colaboradores);
+        }
     }
 }

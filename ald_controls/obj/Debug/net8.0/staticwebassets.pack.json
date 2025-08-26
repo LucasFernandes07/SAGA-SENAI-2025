@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\Alunos\\Documents\\lc bixo doido\\SAGA-SENAI-2025\\ald_controls\\wwwroot\\img\\logo.ald.png",
+      "PackagePath": "staticwebassets\\img\\logo.ald.png"
+    },
+    {
       "Id": "C:\\Users\\Alunos\\Documents\\lc bixo doido\\SAGA-SENAI-2025\\ald_controls\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

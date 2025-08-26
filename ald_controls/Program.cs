@@ -11,6 +11,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
@@ -24,7 +25,6 @@ if (app.Environment.IsDevelopment())
 else
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -39,5 +39,31 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
+
+
+// Seed de roles e usuário administrador
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
+    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+
+    string adminEmail = "lc.martins031@gmail.com";
+    string adminRole = "Admin";
+
+    // Cria a role Admin se não existir
+    if (!roleManager.RoleExistsAsync(adminRole).GetAwaiter().GetResult())
+    {
+        roleManager.CreateAsync(new IdentityRole(adminRole)).GetAwaiter().GetResult();
+    }
+
+    // Busca o usuário
+    var adminUser = userManager.FindByEmailAsync(adminEmail).GetAwaiter().GetResult();
+    if (adminUser != null && !userManager.IsInRoleAsync(adminUser, adminRole).GetAwaiter().GetResult())
+    {
+        userManager.AddToRoleAsync(adminUser, adminRole).GetAwaiter().GetResult();
+    }
+}
 
 app.Run();

@@ -20,7 +20,6 @@ public class RegistroEpi
 
     public RegistroEpi()
     {
-        Colaborador = new Colaborador();
         Pontos = 10;
         DataRegistro = DateTime.Now;
     }

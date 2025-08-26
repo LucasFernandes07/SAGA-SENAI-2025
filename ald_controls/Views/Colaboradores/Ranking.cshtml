@@ -1,0 +1,29 @@
+@model IEnumerable<ald_controls.Models.Colaborador>
+@{
+    ViewData["Title"] = "Ranking dos Colaboradores";
+}
+
+<h1 class="mb-4">Ranking dos Colaboradores</h1>
+<table class="table table-striped table-bordered w-50 mx-auto">
+    <thead>
+        <tr>
+            <th>Posição</th>
+            <th>Nome</th>
+            <th>Pontos</th>
+        </tr>
+    </thead>
+    <tbody>
+    @{
+        var posicao = 1;
+        foreach (var colaborador in Model.OrderByDescending(c => c.Pontos).Take(3))
+        {
+    <tr>
+        <td>@posicao</td>
+        <td>@colaborador.Nome</td>
+        <td>@colaborador.Pontos</td>
+    </tr>
+    posicao++;
+        }
+    }
+    </tbody>
+</table>
