@@ -1,99 +1,56 @@
-# 📝 TarefasApp
+# ald_controls
 
-Bem-vindo ao **TarefasApp**! 🚀
+Este projeto é um sistema web para controle de EPIs e colaboradores, desenvolvido em ASP.NET Core MVC.
 
-Um aplicativo web moderno e eficiente para gerenciar suas tarefas diárias, desenvolvido com ASP.NET Core MVC, Entity Framework Core (MySQL) e visual inovador com Bootstrap. Organize, crie, edite, conclua e exclua tarefas de forma prática e estilosa!
+## Sobre o sistema
+O ald_controls permite:
+- Cadastro e gerenciamento de colaboradores
+- Cadastro e gerenciamento de EPIs (Equipamentos de Proteção Individual)
+- Registro de uso de EPIs pelos colaboradores
+- Controle de pontos por registro de uso
+- Ranking dos colaboradores
+- Controle de acesso por perfil (administrador e colaborador)
+- Autenticação e gerenciamento de conta via ASP.NET Identity
 
-## ✨ Funcionalidades
-
-- 📋 Listagem de tarefas com visual moderno
-- ➕ Criação de novas tarefas
-- ✏️ Edição de tarefas existentes
-- ✅ Marcação de tarefas como concluídas (com botão interativo)
-- ❌ Exclusão de tarefas com confirmação
-- 🔍 Filtro e busca por título
-- 🌙 Modo escuro
-- 📱 Layout responsivo para celular/tablet
-- 🎨 Interface com emotes, cores suaves e feedback visual
-
-## 🖥️ Tecnologias Utilizadas
-
+## Tecnologias utilizadas
 - ASP.NET Core MVC
 - Entity Framework Core
-- MySQL (via Pomelo)
-- Bootstrap 5
-- HTML5, CSS3 customizado
-- jQuery (para interações)
+- ASP.NET Identity (autenticação, roles)
+- Bootstrap (layout responsivo)
+- Razor Pages para área de identidade
+- SQL Server (banco de dados)
 
-## 🚦 Como Executar o Projeto
+## Como funciona
+- Administradores podem cadastrar, editar e excluir colaboradores e EPIs, além de editar descrições e gerenciar registros.
+- Colaboradores podem visualizar EPIs, registros e ranking, mas não podem editar ou excluir dados.
+- Cada registro de uso de EPI soma 10 pontos ao colaborador.
+- O sistema possui páginas de login, registro, gerenciamento de conta e autenticação em dois fatores, todas traduzidas para português.
 
-1. **Pré-requisitos:**
-   - [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
-   - MySQL Server rodando e banco criado (`tarefasapp`)
+## Como rodar
+1. Instale o .NET SDK 8.0 ou superior
+2. Configure a string de conexão do banco de dados em `appsettings.json`
 
-2. **Configure a conexão:**
-   - Edite o arquivo `appsettings.json` com os dados do seu MySQL:
-     ```json
-     "ConnectionStrings": {
-       "DefaultConnection": "server=localhost;database=tarefasapp;user=arthur;password=121212;"
-     }
-     ```
-
-3. **Restaure os pacotes:**
-   ```bash
-   dotnet restore
-   ```
-
-4. **Aplique as migrações e crie o banco de dados:**
-   ```bash
-   dotnet ef database update
-   ```
-
-5. **Execute o projeto:**
-   ```bash
-   dotnet run
-   ```
-
-6. **Acesse no navegador:**
-   [http://localhost:5000/Tarefas](http://localhost:5000/Tarefas)
-
-## 📂 Estrutura Principal
-
-- `Controllers/` - Lógica de controle das rotas e ações
-- `Models/` - Modelos de dados (Tarefa)
-- `Views/` - Páginas de interface (Razor)
-- `Data/` - Contexto do banco de dados
-- `wwwroot/` - Arquivos estáticos (CSS, JS, Bootstrap)
-
-## 🗄️ Diagrama da Tabela MySQL
-
-```
-+-----------+--------------+-----------+-----------------------------+
-|   Campo   |    Tipo      |  Chave    |         Observação          |
-+-----------+--------------+-----------+-----------------------------+
-| Id        | INT          | PK        | Auto incremento             |
-| Titulo    | VARCHAR(255) |           | Não nulo                    |
-| Descricao | VARCHAR(255) |           | Não nulo                    |
-| Concluida | TINYINT(1)   |           | Não nulo (0 = não, 1 = sim) |
-+-----------+--------------+-----------+-----------------------------+
+### Restaure os pacotes
+```powershell
+dotnet restore
 ```
 
-## 🖼️ Telas
+### Aplique as migrações e crie o banco de dados
+```powershell
+dotnet ef database update
+```
 
-- **Lista de Tarefas:** Visualize, filtre e busque tarefas
-- **Criar Tarefa:** Adicione uma nova tarefa
-- **Editar Tarefa:** Altere informações de uma tarefa existente
-- **Excluir Tarefa:** Remova tarefas com confirmação
-- **Modo Escuro:** Ative para uma experiência confortável à noite
+### Execute o projeto
+```powershell
+dotnet run
+```
 
-## 💡 Extras
+5. Acesse o site em `http://localhost:5000` (ou porta configurada)
 
-- Filtro e busca instantânea por título
-- Modo escuro com alternância
-- Feedback visual para ações (alertas, cores, emotes)
-- Layout 100% responsivo
-- Botão de concluir estilizado e funcional
+## Observações
+- O usuário administrador é criado automaticamente no seed do sistema.
+- Apenas administradores podem editar descrições de EPIs e gerenciar dados.
+- O layout e todas as páginas principais estão em português.
 
 ---
-
-Feito por Arthur Gomes
+Desenvolvido para controle de EPIs e colaboradores SENAI 2025.
