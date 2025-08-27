@@ -1,3 +1,6 @@
+<div class="mb-3">
+    <a href="/" class="btn btn-outline-primary"><i class="bi bi-house-door"></i> Voltar para Home</a>
+</div>
 @model IEnumerable<ald_controls.Models.Epi>
 
 @{
@@ -39,7 +42,29 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                @item.Descricao
+                                                @if (!User.IsInRole("Admin"))
+                                                {
+                                                    if (item.Nome.ToLower().Contains("capacete"))
+                                                    {
+                                                        <span>O capacete é utilizado para proteger a cabeça contra impactos, quedas de objetos e outros riscos no ambiente de trabalho.</span>
+                                                    }
+                                                    else if (item.Nome.ToLower().Contains("luva"))
+                                                    {
+                                                        <span>A luva é utilizada para proteger as mãos contra agentes químicos, cortes, perfurações e outros riscos ocupacionais.</span>
+                                                    }
+                                                    else if (item.Nome.ToLower().Contains("caneleira"))
+                                                    {
+                                                        <span>A caneleira é utilizada para proteger as pernas e canelas contra impactos, cortes e outros riscos presentes no ambiente de trabalho.</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        @item.Descricao
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    @item.Descricao
+                                                }
                                             </div>
                                         </div>
                                     </div>

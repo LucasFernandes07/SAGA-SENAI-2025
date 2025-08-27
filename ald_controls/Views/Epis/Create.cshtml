@@ -1,3 +1,6 @@
+<div class="mb-3" style="margin-left: 16px;">
+    <a href="/" class="btn btn-outline-primary"><i class="bi bi-house-door"></i> Voltar para Home</a>
+</div>
 @model ald_controls.Models.Epi
 
 @{
@@ -17,17 +20,50 @@
                 <input asp-for="Nome" class="form-control" />
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Descricao" class="control-label"></label>
-                @if (User.IsInRole("Admin"))
-                {
-                    <input asp-for="Descricao" class="form-control" />
-                    <span asp-validation-for="Descricao" class="text-danger"></span>
-                }
-                else
-                {
-                    <input asp-for="Descricao" class="form-control" readonly />
-                }
+            <div class="form-group d-flex align-items-center gap-2">
+                <label asp-for="Descricao" class="control-label mb-0">Descrição</label>
+                <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#modalDescricaoEpi">
+                    <i class="bi bi-info-circle"></i> Sobre o EPI
+                </button>
+            </div>
+            @if (User.IsInRole("Admin"))
+            {
+                <input asp-for="Descricao" class="form-control" />
+                <span asp-validation-for="Descricao" class="text-danger"></span>
+            }
+            else
+            {
+                <input asp-for="Descricao" class="form-control" readonly />
+            }
+
+            <!-- Modal Explicativo do EPI -->
+            <div class="modal fade" id="modalDescricaoEpi" tabindex="-1" aria-labelledby="modalDescricaoEpiLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalDescricaoEpiLabel">Sobre o EPI</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                        </div>
+                        <div class="modal-body">
+                            @if (Model.Nome != null && Model.Nome.ToLower().Contains("capacete"))
+                            {
+                                <span>O capacete é utilizado para proteger a cabeça contra impactos, quedas de objetos e outros riscos no ambiente de trabalho.</span>
+                            }
+                            else if (Model.Nome != null && Model.Nome.ToLower().Contains("luva"))
+                            {
+                                <span>A luva é utilizada para proteger as mãos contra agentes químicos, cortes, perfurações e outros riscos ocupacionais.</span>
+                            }
+                            else if (Model.Nome != null && Model.Nome.ToLower().Contains("caneleira"))
+                            {
+                                <span>A caneleira é utilizada para proteger as pernas e canelas contra impactos, cortes e outros riscos presentes no ambiente de trabalho.</span>
+                            }
+                            else
+                            {
+                                <span>Informe o nome do EPI para ver uma explicação sobre ele.</span>
+                            }
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -42,4 +78,12 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var popoverTrigger = document.getElementById('descricaoLabel');
+            if (popoverTrigger) {
+                var popover = new bootstrap.Popover(popoverTrigger);
+            }
+        });
+    </script>
 }
