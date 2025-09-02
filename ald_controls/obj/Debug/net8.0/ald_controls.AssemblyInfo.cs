@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ald_controls")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+40b74765583215091fcc1078c4590441069a1d5d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+379cb067cfb149168950d521da42d7e2b8a49377")]
 [assembly: System.Reflection.AssemblyProductAttribute("ald_controls")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ald_controls")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
